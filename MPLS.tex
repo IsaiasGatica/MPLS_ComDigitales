@@ -36,6 +36,9 @@
     \item Se requeria mayor QoS y ancho de banda. Llega ATM
     \item Problema: Dificultad de operar e integrar una red basandose en dos tecnologias distintas.
 \end{itemize}
+\section{RFC}
+Un RFC \footnote{request for comment, en ingles} es una publicación de la IETF, que se adopta como estándar de Internet y otras redes de computadoras. Cada RFC tiene un título y un número asignado, que no puede repetirse ni eliminarse aunque el documento se quede obsoleto.
+En este caso en particular, 
 \section{Concepto de MPLS}
 MPLS es un estandar IP de conmutación de paquetes del IETF. Con IP sin conexión tradicional, la dirección
 de destino junto a otros parámetros de la cabecera, es examinada cada vez que el paquete atravisa un router. La ruta
@@ -71,6 +74,27 @@ Por otro lado, para comprender en mas profundidad una red MPLS es necesario cono
     \caption{}
     \label{}
 \end{figure}
+
+\section{Cabecera MPLS}
+El encabezado MPLS tiene cuatro campos
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Fig/CabeceraMPLS}
+    \caption{}
+    \label{}
+\end{figure}
+
+\begin{itemize}
+    \item Etiqueta: Se toma de un paquete como un indice en una tabla de reenvio. Esto hace que encontrar la linea correcta de salida solo sea buscar en una tabla, a diferencia de realizar el enrutamiento en base a la direccion de destino.
+    
+    \item QoS: Identifica la clase de servicio.
+    
+    \item S (\textit{Stack}): Coloca en una pila multiples etiquetas jerarquicas. Si tiene el valor 1, indica que es la ultima etiqueta añadida al paquete IP. Si es un 0, hay mas etiquetas añadidas al paquete.
+    
+    \item TTL (\textit{Time-to-live}): Valor que se decrementa en cada enrutado. Al llegar a 0, este paquete es descartado.
+\end{itemize}
+
+Como los encabezados MPLS no forman parte del paquete de la capa de red o de la trama de enlace de datos, MPLS es en gran medida independiente de ambas capas. Esto permite que se puedan reenviar tanto paquetes IP como celdas ATM, dependiendo de lo que aparezca.
 
 \section{Características principales}
 La tecnología MPLS es una solución para la conmutación multiprotocolo:
